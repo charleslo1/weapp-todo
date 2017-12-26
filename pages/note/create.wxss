@@ -1,0 +1,4 @@
+/* pages/note/create.wxss */
+.field-content {
+  border: 1px solid red;
+}
