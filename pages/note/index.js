@@ -24,13 +24,6 @@ Page({
   },
 
   /**
-   * 分享
-   */
-  onShareAppMessage: function (options) {
-
-  },
-
-  /**
    * 同步数据
    */
   syncData() {
@@ -50,24 +43,42 @@ Page({
     this.setData(data)
   },
 
-  // 点击事件
-  handleTap (e) {
+  /**
+   * 笔记点击事件
+   */
+  handleNoteClick(e) {
     // 判断锁
     if (this.disableTap) return
-    // 在这里执行点击事件
+    // 获取 uuid
+    let uuid = e.currentTarget.dataset.uuid
+    wx.navigateTo({
+      url: '../note/create?uuid=' + uuid
+    })
   },
 
-  // 长按事件
-  handleLongtap (e) {
-    // 加锁 tap 事件
+  handleNoteLongclick(e) {
+    // 加锁：避免触发 tap 事件
     this.disableTap = true
-    // 在这里执行长按操作
+    // 获取 uuid
+    let uuid = e.currentTarget.dataset.uuid
+    wx.showModal({
+      title: '删除提示',
+      content: '确定要删除这个笔记吗？',
+      success: (e) => {
+        if (e.confirm) {
+          noteStore.removeNote(uuid)
+          noteStore.save()
+          this.syncData()
+        }
+      }
+    })
   },
 
-  // Touch End 事件
-  handleTouchEnd() {
-    // 解锁 tap 事件
-    setTimeout(() => this.disableTap = false, 300)
+  handleNoteTouchEnd() {
+    setTimeout(() => {
+      // 解锁 tap 事件
+      this.disableTap = false
+    }, 300)
   },
 
   /**
