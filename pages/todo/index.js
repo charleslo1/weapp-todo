@@ -58,6 +58,9 @@ Page({
     }, 2000)
   },
 
+  /**
+   * Todo 数据改变事件
+   */
   handleTodoItemChange (e) {
     let index = e.currentTarget.dataset.index
     let todo = e.detail.data.todo
@@ -66,7 +69,10 @@ Page({
     this.update()
   },
 
-  handleTodoLongclick(e) {
+  /**
+   * Todo 长按事件
+   */
+  handleTodoLongTap(e) {
     // 获取 index
     let index = e.currentTarget.dataset.index
     wx.showModal({
@@ -81,6 +87,9 @@ Page({
     })
   },
 
+  /**
+   * 更新数据
+   */
   update(data) {
     data = data || this.data
     data.completedCount = todoStore.getCompletedTodos().length
@@ -88,6 +97,9 @@ Page({
     this.setData(data)
   },
 
+  /**
+   * 新建事件
+   */
   handleAddTodo (e) {
     wx.navigateTo({
       url: '../todo/create'

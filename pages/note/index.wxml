@@ -8,8 +8,8 @@
     <note-card
       note="{{ item }}"
       data-uuid="{{ item.uuid }}"
-      bindtap="handleNoteClick"
-      bindlongtap="handleNoteLongclick"
+      bindtap="handleNoteTap"
+      bindlongtap="handleNoteLongTap"
       bindtouchend="handleNoteTouchEnd">
     </note-card>
   </view>

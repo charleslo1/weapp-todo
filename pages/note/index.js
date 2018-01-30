@@ -44,9 +44,9 @@ Page({
   },
 
   /**
-   * 笔记点击事件
+   * 笔记 tap 事件
    */
-  handleNoteClick(e) {
+  handleNoteTap(e) {
     // 判断锁
     if (this.disableTap) return
     // 获取 uuid
@@ -56,7 +56,10 @@ Page({
     })
   },
 
-  handleNoteLongclick(e) {
+  /**
+   * 笔记 longtap 事件
+   */
+  handleNoteLongTap(e) {
     // 加锁：避免触发 tap 事件
     this.disableTap = true
     // 获取 uuid
@@ -74,6 +77,9 @@ Page({
     })
   },
 
+  /**
+   * 笔记 touchend 事件
+   */
   handleNoteTouchEnd() {
     setTimeout(() => {
       // 解锁 tap 事件
